@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace KeePass
         {
             InitializeComponent();
             data = new KeePassData();
+            data.Listdata = new List<KeePass>();
             //try
             //{
             //    data = DeserializeFromXML(filePath) as KeePassData;
@@ -26,7 +28,7 @@ namespace KeePass
             //{
             //    Loaddata();
             //}
-            LoadListView();
+            //LoadListView();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -92,7 +94,7 @@ namespace KeePass
 
         public void LoadListView()
         {
-            listViewMain.Items.Clear();
+            MainListView.Items.Clear();
             if(data.Listdata == null)
             {
                 data = new KeePassData();
@@ -107,7 +109,7 @@ namespace KeePass
         public void AddItemtoListView(KeePass keepass)
         {
             ListViewItem lvi = new ListViewItem();
-            listViewMain.Items.Add(lvi);
+            MainListView.Items.Add(lvi);
             lvi.Text = keepass.title;
             lvi.SubItems.Add(new ListViewItem.ListViewSubItem() { Text = keepass.username });
             lvi.SubItems.Add(new ListViewItem.ListViewSubItem() { Text = ConvertToPsswrdChar(keepass.password) });
@@ -199,5 +201,30 @@ namespace KeePass
                 }
             }
         }
+
+        private void Deletetsitem_Click(object sender, EventArgs e)
+        {
+            MainListView.CheckBoxes = true;
+            
+        }
+
+        private void listViewMain_MouseClick(object sender, MouseEventArgs e)
+        { 
+           if(e.Button == MouseButtons.Right)
+           {
+               Point pt = MainListView.PointToScreen(e.Location);
+               ListView_ctms.Show(pt);
+           }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if(MainListView.SelectedItems.Count == 0)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        
     }
 }

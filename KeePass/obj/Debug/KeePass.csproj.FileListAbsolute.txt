@@ -1,0 +1,10 @@
+C:\Users\HocVien\Desktop\KeePass\KeePass\bin\Debug\KeePass.exe.config
+C:\Users\HocVien\Desktop\KeePass\KeePass\bin\Debug\KeePass.exe
+C:\Users\HocVien\Desktop\KeePass\KeePass\bin\Debug\KeePass.pdb
+C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.csprojResolveAssemblyReference.cache
+C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.AddPKForm.resources
+C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.FormMain.resources
+C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.Properties.Resources.resources
+C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.csproj.GenerateResource.Cache
+C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.exe
+C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.pdb

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{590B06F3-CDAF-42F9-89A1-DEE1674142D7}</ProjectGuid>
+    <ProjectGuid>{3C2000F0-9853-44D3-B008-CE7CFBE116C6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KeePass</RootNamespace>
