@@ -1,14 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace KeePass
 {
     public class KeePass
     {
+        private string id;
+        public string Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+
         public string title;
         public string Title
         {
@@ -92,65 +105,69 @@ namespace KeePass
                 grp = value;
             }
         }
-        public static List<string> Listgrp = new List<string> { "General", "Networking", "Internet", "Homebanking" };
+
+        public static List<string> Listgrp = new List<string> { "General", "Windows", "Networking", "Internet", "Email", "Homebanking" };
         public enum group
         {
-            General, Networking, Internet, Homebanking
+            General, Windows, Networking, Internet, Email, Homebanking
         }
 
         // Constructor
         public KeePass()
         {
-            this.Title = null;
-            this.Username = null;
-            this.Password = null;
-            this.Url = null;
-            this.Note = null;
+            this.title = null;
+            this.username = null;
+            this.password = null;
+            this.url = null;
+            this.note = null;
 
             this.Grp = null;
         }
         public KeePass(string title, string usern, string psswrd, group grp, string url, string note)
         {
-            this.Title = title;
-            this.Username = usern;
-            this.Password = psswrd;
-            this.Url = url;
-            this.Note = note;
+            this.id = FormMain.Data.SetID();
 
-            this.Grp = grp.ToString();
+            this.title = title;
+            this.username = usern;
+            DataEncryptor de = new DataEncryptor();
+            this.password = DataEncryptor.Encrypt(psswrd);
+            this.url = url;
+            this.note = note;
+
+            this.grp = grp.ToString();
         }
 
-        // Update
-        public void Change(string title, string usern, string psswrd, group grp, string url, string note)
+        public override bool Equals(object obj)
         {
-            this.Title = title;
-            this.Username = usern;
-            this.Password = psswrd;
-            this.Url = url;
-            this.Note = note;
-
-            this.Grp = grp.ToString();
+            if (obj == null)
+                return false;
+            KeePass kp = obj as KeePass;
+            if (kp.Id == null)
+                return false;
+            return base.Equals(obj);
         }
 
-        // Check URL is valid
-        public bool CheckURL(string url)
+        public bool Equals(KeePass other)
         {
-            Uri link = new Uri(url);
-            bool result = Uri.TryCreate(url, UriKind.Absolute, out link)
-                   && (link.Scheme == Uri.UriSchemeHttp || link.Scheme == Uri.UriSchemeHttps);
-            return result;
+            if (other == null)
+                return false;
+            return (this.Id.Equals(other.Id));
         }
 
         // Destructor
         ~KeePass()
         {
-            this.Title = null;
-            this.Username = null;
-            this.Password = null;
-            this.Url = null;
-            this.Note = null;
+            this.id = null;
 
-            this.Grp = null;
+            this.title = null;
+            this.username = null;
+            this.password = null;
+            this.url = null;
+            this.note = null;
+
+            this.grp = null;
         }
     }
+
+    
 }

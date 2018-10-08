@@ -18,39 +18,10 @@ namespace KeePass
             group_cbb.SelectedIndex = -1;
         }
 
-        private void ShowPssBtn_MouseUp(object sender, MouseEventArgs e)
-        {
-            psswrd_txtb.UseSystemPasswordChar = true;
-        }
-
-        private void ShowPssBtn_MouseDown(object sender, MouseEventArgs e)
-        {
-            psswrd_txtb.UseSystemPasswordChar = false;
-        }
-
-        private void add_btn_Click(object sender, EventArgs e)
-        {
-            if (!txtbHasData() && group_cbb.SelectedIndex <= -1)
-            {
-                MessageBox.Show("Requirement(*) field cannot be empty !", "Message", MessageBoxButtons.OK);
-            }
-            else
-            {
-                keepass = new KeePass(
-                    title_txtb.Text,
-                    usern_txtb.Text,
-                    psswrd_txtb.Text,
-                    (KeePass.group)Enum.Parse(typeof(KeePass.group), group_cbb.SelectedValue.ToString()),
-                    url_txtb.Text,
-                    note_txtb.Text
-                );
-                FormMain.data.Listdata.Add(keepass);
-                this.Close();
-            }
-        }
+        #region Method
 
         // Get All-Control with <Type>
-        public IEnumerable<Control> GetAll(Control control, Type type)
+        public static IEnumerable<Control> GetAll(Control control, Type type)
         {
             var controls = control.Controls.Cast<Control>();
 
@@ -70,10 +41,44 @@ namespace KeePass
 
             return true;
         }
+        #endregion
+
+        #region Events
+
+        private void ShowPssBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            psswrd_txtb.UseSystemPasswordChar = true;
+        }
+
+        private void ShowPssBtn_MouseDown(object sender, MouseEventArgs e)
+        {
+            psswrd_txtb.UseSystemPasswordChar = false;
+        }
+
+        private void add_btn_Click(object sender, EventArgs e)
+        {
+            //if (!txtbHasData() && group_cbb.SelectedIndex <= -1)
+            //{
+            //    MessageBox.Show("Requirement(*) field cannot be empty !", "Message", MessageBoxButtons.OK);
+            //}
+            //else
+            //{
+                keepass = new KeePass(
+                    title_txtb.Text,
+                    usern_txtb.Text,
+                    psswrd_txtb.Text,
+                    (KeePass.group)Enum.Parse(typeof(KeePass.group), group_cbb.SelectedValue.ToString()),
+                    url_txtb.Text,
+                    note_txtb.Text
+                );
+                FormMain.Data.Listdata.Add(keepass);
+                this.Close();
+            //}
+        }
 
         private void cancel_btn_Click(object sender, EventArgs e)
         {
-            if(txtbHasData() && group_cbb.SelectedIndex <= -1)
+            if(txtbHasData() /*&& group_cbb.SelectedIndex < 0*/)
             {
                 this.Close();
             }
@@ -87,5 +92,6 @@ namespace KeePass
                 }
             }
         }
+        #endregion
     }
 }

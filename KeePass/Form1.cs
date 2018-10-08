@@ -1,61 +1,49 @@
-﻿using KeePass;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-
+using System.IO.Compression;
 namespace KeePass
 {
     public partial class FormMain : Form
     {
-        public string filePath = null;
-        public static KeePassData data { get; set; }
 
+        public string filePath = null;
+        private static KeePassData data;
+        public static KeePassData Data
+        {
+            get
+            {
+                return data;
+            }
+
+            set
+            {
+                data = value;
+            }
+        }
+
+        /* Khởi tạo Form */
         public FormMain()
         {
             InitializeComponent();
-            data = new KeePassData();
-            data.Listdata = new List<KeePass>();
-            //try
-            //{
-            //    data = DeserializeFromXML(filePath) as KeePassData;
-            //}
-            //catch
-            //{
-            //    Loaddata();
-            //}
-            //LoadListView();
-        }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if(ExitMethod())
-            {
-                Application.Exit();
-            }
+            Data = new KeePassData();
+            Data.Listdata = new List<KeePass>();
         }
-
-        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(!ExitMethod())
-            {
-                e.Cancel = true;
-            }
-        }
-
-        bool ExitMethod()
+    
+        #region Method
+        bool Exit_Method()
         {
             if (filePath != null)
             {
-                SerializeToXML(data, filePath);
+                SerializeToXML(Data, filePath);
             }
             else
             {
-                if (data.Listdata.Count > 0)
+                if (Data.Listdata.Count > 0)
                 {
                     DialogResult dr = new DialogResult();
                     dr = MessageBox.Show("Do you want to save ?", "Message", MessageBoxButtons.YesNoCancel);
@@ -64,7 +52,7 @@ namespace KeePass
                         SaveFileDialog sfd = new SaveFileDialog();
                         if (sfd.ShowDialog() == DialogResult.Yes)
                         {
-                            SerializeToXML(data, sfd.FileName);
+                            SerializeToXML(Data, sfd.FileName);
                         }
                         else return false;
                     }
@@ -77,44 +65,134 @@ namespace KeePass
             return true;
         }
 
+        void Add_Method()
+        {
+            AddPKForm af = new AddPKForm();
+            af.ShowDialog();
+            AddItemtoListView(AddPKForm.keepass);
+            AddPKForm.keepass = null;
+        }
+
+        void Edit_Method()
+        {
+            if (MainListView.SelectedItems.Count > 1)
+            {
+                MessageBox.Show("Too many items selected for editing !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            EditForm.kp = data.Listdata.Find(x => x.Id == MainListView.SelectedItems[0].Tag.ToString());
+            EditForm ef = new EditForm();
+            ef.ShowDialog();
+
+            MainListView.Items.Remove(MainListView.SelectedItems[0]);
+            AddItemtoListView(EditForm.kp);
+
+            EditForm.kp = null;
+        }
+
+        void Delete_Method()
+        {
+            if (MainListView.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("No items selected for deleting !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            foreach (var item in MainListView.SelectedItems)
+            {
+                ListViewItem lvi = item as ListViewItem;
+                KeePassData.RemoveKP(lvi.Tag);
+
+                MainListView.Items[lvi.Index].Remove();
+            }
+        }
+
         void Loaddata()
         {
-            data = new KeePassData();
-            data.Listdata = new List<KeePass>();
-            data.Listdata.Add(new KeePass()
-            {
-                title = "abc",
-                username = "abc",
-                password = "abc",
-                grp = KeePass.Listgrp[(int)KeePass.group.General],
-                url = "abc",
-                note = "abc",
-            });
+            Data = new KeePassData();
+            Data.Listdata = new List<KeePass>();
+            Data.Listdata.Add(new KeePass(
+                "abc1",
+                "abc1",
+                "abc1",
+                KeePass.group.Email,
+                "abc1",
+                "abc1"
+            ));
+
+            Data.Listdata.Add(new KeePass(
+                "abc2",
+                "abc2",
+                "abc2",
+                KeePass.group.Windows,
+                "abc2",
+                "abc2"
+            ));
+
+            Data.Listdata.Add(new KeePass(
+                "abc3",
+                "abc3",
+                "abc3",
+                KeePass.group.Networking,
+                "abc3",
+                "abc3"
+            ));
+
+            Data.Listdata.Add(new KeePass(
+                "abc4",
+                "abc4",
+                "abc4",
+                KeePass.group.General,
+                "abc4",
+                "abc4"
+            ));
         }
 
         public void LoadListView()
         {
-            MainListView.Items.Clear();
-            if(data.Listdata == null)
+            if (MainListView.Items.Count != data.Listdata.Count)
             {
-                data = new KeePassData();
-                data.Listdata = new System.Collections.Generic.List<KeePass>();
+                MainListView.Items.Clear();
             }
-            foreach(KeePass item in data.Listdata)
+
+            data.Listdata.Sort(new sortKeePass());
+            Load_ListViewGroup();
+            foreach (KeePass item in Data.Listdata)
             {
                 AddItemtoListView(item);
             }
         }
 
+        public void Load_ListViewGroup()
+        {
+
+            foreach(string item in KeePass.Listgrp)
+            {
+                ListViewGroup lvg = new ListViewGroup();
+                MainListView.Groups.Add(lvg);
+                lvg.Header = item;
+            }
+        }
+
         public void AddItemtoListView(KeePass keepass)
         {
+            if (keepass == null)
+                return;
+
             ListViewItem lvi = new ListViewItem();
             MainListView.Items.Add(lvi);
+
+            MainListView.Groups[KeePass.Listgrp.IndexOf(keepass.grp)].Items.Add(lvi);
+
             lvi.Text = keepass.title;
             lvi.SubItems.Add(new ListViewItem.ListViewSubItem() { Text = keepass.username });
             lvi.SubItems.Add(new ListViewItem.ListViewSubItem() { Text = ConvertToPsswrdChar(keepass.password) });
             lvi.SubItems.Add(new ListViewItem.ListViewSubItem() { Text = keepass.url });
             lvi.SubItems.Add(new ListViewItem.ListViewSubItem() { Text = keepass.note });
+
+            lvi.Tag = keepass.Id;
+            lvi.ImageIndex = KeePass.Listgrp.IndexOf(keepass.grp) + 1;
         }
 
         public static string ConvertToPsswrdChar(string psswrd)
@@ -126,13 +204,8 @@ namespace KeePass
             return psswrd;
         }
 
-        private void Addtsitem_Click(object sender, EventArgs e)
-        {
-            AddPKForm af = new AddPKForm();
-            af.ShowDialog();
-            AddItemtoListView(AddPKForm.keepass);
-            AddPKForm.keepass = null;
-        }
+        #region Serialize Method
+
 
         private void SerializeToXML(KeePassData Data, string filepath)
         {
@@ -142,30 +215,69 @@ namespace KeePass
             xmls.Serialize(file, Data);
 
             file.Close();
+
+            
         }
 
         private object DeserializeFromXML(string filepath)
         {
-            if (File.Exists(filepath))
+            FileStream file = new FileStream(filepath, FileMode.Open, FileAccess.Read);
+            //TextReader file = new StreamReader(@filepath);
+            try
             {
+                XmlSerializer xmls = new XmlSerializer(typeof(KeePassData));
 
-                TextReader file = new StreamReader(@filepath);
-                try
-                {
-                    XmlSerializer xmls = new XmlSerializer(typeof(KeePassData));
-
-                    object obj = xmls.Deserialize(file);
-                    file.Close();
-                    return obj;
-                }
-                catch
-                {
-                    file.Close();
-                    MessageBox.Show("Cannot open \'" + filepath + "\' file !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    throw new NotImplementedException();
-                }
+                object obj;
+                obj = xmls.Deserialize(file);
+                file.Close();
+                return obj;
             }
-            return null;
+            catch
+            {
+                file.Close();
+                MessageBox.Show("Cannot open \'" + filepath + "\' file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //throw new NotImplementedException();
+                return null;
+            }
+        }
+        #endregion
+
+        #endregion
+
+        #region Events
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    data = DeserializeFromXML(filePath) as KeePassData;
+            //}
+            //catch
+            //{
+            //    Loaddata();
+            //}
+            
+            Loaddata();
+            LoadListView();
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!Exit_Method())
+            {
+                e.Cancel = true;
+            }
+        }
+
+        /* ToolStrip Events */
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dg = new OpenFileDialog();
+            if (dg.ShowDialog() == DialogResult.OK)
+            {
+                filePath = dg.FileName;
+                Data = DeserializeFromXML(filePath) as KeePassData;
+                LoadListView();
+            }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -176,38 +288,40 @@ namespace KeePass
                 if (dg.ShowDialog() == DialogResult.OK)
                 {
                     filePath = dg.FileName;
-                    SerializeToXML(data, filePath);
+                    SerializeToXML(Data, filePath);
                 }
                 return;
             }
-            SerializeToXML(data, filePath);
+            SerializeToXML(Data, filePath);
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dg = new OpenFileDialog();
-            if(dg.ShowDialog() == DialogResult.OK)
+            if (Exit_Method())
             {
-                try
-                {
-                    data = new KeePassData();
-                    data = DeserializeFromXML(dg.SafeFileName) as KeePassData;
-                    filePath = dg.FileName;
-                    LoadListView();
-                }
-                catch
-                {
-                    throw new NotImplementedException();
-                }
+                Application.Exit();
             }
+        }
+        
+
+        /* Toolbar Events */
+        private void Addtsitem_Click(object sender, EventArgs e)
+        {
+            Add_Method();
+        }
+
+        private void Edittsitem_Click(object sender, EventArgs e)
+        {
+            Edit_Method();
         }
 
         private void Deletetsitem_Click(object sender, EventArgs e)
         {
-            MainListView.CheckBoxes = true;
-            
+            Delete_Method();
         }
+        
 
+        /* ListView Events */
         private void listViewMain_MouseClick(object sender, MouseEventArgs e)
         { 
            if(e.Button == MouseButtons.Right)
@@ -216,7 +330,8 @@ namespace KeePass
                ListView_ctms.Show(pt);
            }
         }
-
+        
+        /* contextMenuStrip Events */
         private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if(MainListView.SelectedItems.Count == 0)
@@ -225,6 +340,44 @@ namespace KeePass
             }
         }
 
-        
+        /* ToolStripMenu Events */
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Add_Method();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Edit_Method();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Delete_Method();
+        }
+
+
+        #endregion
+
+        private void MainTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if(e.Node.Level <= 0)
+            {
+                MainListView.ShowGroups = true;
+                LoadListView();
+                return;
+            }
+
+            MainListView.ShowGroups = false;
+            MainListView.Items.Clear();
+            foreach (KeePass item in data.Listdata)
+            {
+                if(item.Grp == e.Node.Text)
+                {
+                    AddItemtoListView(item);
+                }
+            }
+            //MainListView.RedrawItems(0, MainListView.Items.Count, true);
+        }
     }
 }

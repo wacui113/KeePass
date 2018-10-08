@@ -1,10 +1,35 @@
-C:\Users\HocVien\Desktop\KeePass\KeePass\bin\Debug\KeePass.exe.config
-C:\Users\HocVien\Desktop\KeePass\KeePass\bin\Debug\KeePass.exe
-C:\Users\HocVien\Desktop\KeePass\KeePass\bin\Debug\KeePass.pdb
-C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.csprojResolveAssemblyReference.cache
-C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.AddPKForm.resources
-C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.FormMain.resources
-C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.Properties.Resources.resources
-C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.csproj.GenerateResource.Cache
-C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.exe
-C:\Users\HocVien\Desktop\KeePass\KeePass\obj\Debug\KeePass.pdb
+F:\KeePass\KeePass\obj\Debug\KeePass.csprojResolveAssemblyReference.cache
+F:\KeePass\KeePass\obj\Debug\KeePass.AddPKForm.resources
+F:\KeePass\KeePass\obj\Debug\KeePass.FormMain.resources
+F:\KeePass\KeePass\obj\Debug\KeePass.Properties.Resources.resources
+F:\KeePass\KeePass\obj\Debug\KeePass.csproj.GenerateResource.Cache
+F:\KeePass\KeePass\bin\Debug\KeePass.exe.config
+F:\KeePass\KeePass\bin\Debug\KeePass.exe
+F:\KeePass\KeePass\bin\Debug\KeePass.pdb
+F:\KeePass\KeePass\obj\Debug\KeePass.EditForm.resources
+F:\KeePass\KeePass\obj\Debug\KeePass.exe
+F:\KeePass\KeePass\obj\Debug\KeePass.pdb
+D:\KeePass\KeePass\bin\Debug\KeePass.exe.config
+D:\KeePass\KeePass\obj\Debug\KeePass.exe
+D:\KeePass\KeePass\obj\Debug\KeePass.pdb
+D:\KeePass\KeePass\obj\Debug\KeePass.csprojResolveAssemblyReference.cache
+D:\KeePass\KeePass\obj\Debug\KeePass.AddPKForm.resources
+D:\KeePass\KeePass\obj\Debug\KeePass.EditForm.resources
+D:\KeePass\KeePass\obj\Debug\KeePass.FormMain.resources
+D:\KeePass\KeePass\obj\Debug\KeePass.Properties.Resources.resources
+D:\KeePass\KeePass\obj\Debug\KeePass.csproj.GenerateResource.Cache
+D:\KeePass\KeePass\bin\Debug\KeePass.exe
+D:\KeePass\KeePass\bin\Debug\KeePass.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\KeePass\KeePass\bin\Debug\KeePass.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\KeePass\KeePass\bin\Debug\KeePass.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\KeePass\KeePass\bin\Debug\KeePass.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\KeePass\KeePass\obj\Debug\KeePass.AddPKForm.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\KeePass\KeePass\obj\Debug\KeePass.EditForm.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\KeePass\KeePass\obj\Debug\KeePass.FormMain.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\KeePass\KeePass\obj\Debug\KeePass.LoginForm.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\KeePass\KeePass\obj\Debug\KeePass.Properties.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\KeePass\KeePass\obj\Debug\KeePass.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\KeePass\KeePass\obj\Debug\KeePass.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\KeePass\KeePass\obj\Debug\KeePass.pdb
+F:\KeePass\KeePass\obj\Debug\KeePass.LoginForm.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\KeePass\KeePass\obj\Debug\KeePass.csprojResolveAssemblyReference.cache

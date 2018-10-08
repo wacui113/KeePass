@@ -30,18 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("General");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Networking");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Internet");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Homebanking");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Database", new System.Windows.Forms.TreeNode[] {
-            treeNode6,
-            treeNode7,
-            treeNode8,
-            treeNode9});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("General");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Windows");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Networking");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Internet");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Email");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Homebanking");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Database", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6});
             this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,25 +53,26 @@
             this.Addtsitem = new System.Windows.Forms.ToolStripButton();
             this.Edittsitem = new System.Windows.Forms.ToolStripButton();
             this.Deletetsitem = new System.Windows.Forms.ToolStripButton();
-            this.pnlMain = new System.Windows.Forms.Panel();
             this.MainListView = new System.Windows.Forms.ListView();
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Username = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Password = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.URL = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Note = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.trv_ImgL = new System.Windows.Forms.ImageList(this.components);
             this.MainTreeView = new System.Windows.Forms.TreeView();
             this.ListView_ctms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.copyPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gotoURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.MainMenuStrip.SuspendLayout();
             this.MainToolStrip.SuspendLayout();
-            this.pnlMain.SuspendLayout();
             this.ListView_ctms.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainMenuStrip
@@ -84,45 +88,42 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loginToolStripMenuItem,
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
-            // 
-            // loginToolStripMenuItem
-            // 
-            this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            this.loginToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.loginToolStripMenuItem.Text = "Login";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -157,26 +158,19 @@
             this.Edittsitem.Name = "Edittsitem";
             this.Edittsitem.Size = new System.Drawing.Size(23, 22);
             this.Edittsitem.Text = "Edit";
+            this.Edittsitem.Click += new System.EventHandler(this.Edittsitem_Click);
             // 
             // Deletetsitem
             // 
+            this.Deletetsitem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Deletetsitem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.Deletetsitem.Image = ((System.Drawing.Image)(resources.GetObject("Deletetsitem.Image")));
             this.Deletetsitem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Deletetsitem.Name = "Deletetsitem";
             this.Deletetsitem.Size = new System.Drawing.Size(23, 22);
             this.Deletetsitem.Text = "Delete";
+            this.Deletetsitem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.Deletetsitem.Click += new System.EventHandler(this.Deletetsitem_Click);
-            // 
-            // pnlMain
-            // 
-            this.pnlMain.Controls.Add(this.MainListView);
-            this.pnlMain.Controls.Add(this.MainTreeView);
-            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 49);
-            this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1084, 624);
-            this.pnlMain.TabIndex = 2;
             // 
             // MainListView
             // 
@@ -186,10 +180,13 @@
             this.Password,
             this.URL,
             this.Note});
+            this.MainListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainListView.FullRowSelect = true;
-            this.MainListView.Location = new System.Drawing.Point(184, 0);
+            this.MainListView.Location = new System.Drawing.Point(0, 0);
             this.MainListView.Name = "MainListView";
-            this.MainListView.Size = new System.Drawing.Size(900, 624);
+            this.MainListView.Size = new System.Drawing.Size(878, 624);
+            this.MainListView.SmallImageList = this.trv_ImgL;
             this.MainListView.TabIndex = 1;
             this.MainListView.UseCompatibleStateImageBehavior = false;
             this.MainListView.View = System.Windows.Forms.View.Details;
@@ -220,92 +217,128 @@
             this.Note.Text = "Note";
             this.Note.Width = 211;
             // 
+            // trv_ImgL
+            // 
+            this.trv_ImgL.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("trv_ImgL.ImageStream")));
+            this.trv_ImgL.TransparentColor = System.Drawing.Color.Transparent;
+            this.trv_ImgL.Images.SetKeyName(0, "database.png");
+            this.trv_ImgL.Images.SetKeyName(1, "general.png");
+            this.trv_ImgL.Images.SetKeyName(2, "windows.png");
+            this.trv_ImgL.Images.SetKeyName(3, "network.jpg");
+            this.trv_ImgL.Images.SetKeyName(4, "internet.png");
+            this.trv_ImgL.Images.SetKeyName(5, "email.png");
+            this.trv_ImgL.Images.SetKeyName(6, "homebanking.png");
+            // 
             // MainTreeView
             // 
-            this.MainTreeView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.MainTreeView.BackColor = System.Drawing.SystemColors.Control;
+            this.MainTreeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.MainTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainTreeView.ImageIndex = 0;
+            this.MainTreeView.ImageList = this.trv_ImgL;
+            this.MainTreeView.Indent = 30;
+            this.MainTreeView.ItemHeight = 34;
             this.MainTreeView.Location = new System.Drawing.Point(0, 0);
             this.MainTreeView.Name = "MainTreeView";
-            treeNode6.Name = "General";
-            treeNode6.Text = "General";
-            treeNode7.Name = "Networking";
-            treeNode7.Text = "Networking";
-            treeNode8.Name = "Internet";
-            treeNode8.Text = "Internet";
-            treeNode9.Name = "Homebanking";
-            treeNode9.Text = "Homebanking";
-            treeNode10.Name = "Database";
-            treeNode10.Text = "Database";
+            treeNode1.ImageIndex = 1;
+            treeNode1.Name = "General";
+            treeNode1.Text = "General";
+            treeNode2.ImageIndex = 2;
+            treeNode2.Name = "Windows";
+            treeNode2.Text = "Windows";
+            treeNode3.ImageIndex = 3;
+            treeNode3.Name = "Networking";
+            treeNode3.Text = "Networking";
+            treeNode4.ImageIndex = 4;
+            treeNode4.Name = "Internet";
+            treeNode4.Text = "Internet";
+            treeNode5.ImageIndex = 5;
+            treeNode5.Name = "Email";
+            treeNode5.Text = "Email";
+            treeNode6.ImageIndex = 6;
+            treeNode6.Name = "Homebanking";
+            treeNode6.Text = "Homebanking";
+            treeNode7.Name = "Database";
+            treeNode7.Text = "Database";
             this.MainTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode10});
-            this.MainTreeView.Size = new System.Drawing.Size(184, 624);
+            treeNode7});
+            this.MainTreeView.RightToLeftLayout = true;
+            this.MainTreeView.SelectedImageIndex = 0;
+            this.MainTreeView.ShowLines = false;
+            this.MainTreeView.Size = new System.Drawing.Size(202, 624);
             this.MainTreeView.TabIndex = 0;
+            this.MainTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.MainTreeView_NodeMouseClick);
             // 
             // ListView_ctms
             // 
             this.ListView_ctms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addToolStripMenuItem,
             this.editToolStripMenuItem,
-            this.deleteToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.copyPasswordToolStripMenuItem,
-            this.gotoURLToolStripMenuItem});
+            this.deleteToolStripMenuItem});
             this.ListView_ctms.Name = "contextMenuStrip1";
-            this.ListView_ctms.Size = new System.Drawing.Size(153, 142);
+            this.ListView_ctms.Size = new System.Drawing.Size(108, 70);
             this.ListView_ctms.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // toolStripSeparator1
+            // splitContainer1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 49);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // copyPasswordToolStripMenuItem
+            // splitContainer1.Panel1
             // 
-            this.copyPasswordToolStripMenuItem.Name = "copyPasswordToolStripMenuItem";
-            this.copyPasswordToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.copyPasswordToolStripMenuItem.Text = "Copy password";
+            this.splitContainer1.Panel1.Controls.Add(this.MainTreeView);
             // 
-            // gotoURLToolStripMenuItem
+            // splitContainer1.Panel2
             // 
-            this.gotoURLToolStripMenuItem.Name = "gotoURLToolStripMenuItem";
-            this.gotoURLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.gotoURLToolStripMenuItem.Text = "Goto URL";
+            this.splitContainer1.Panel2.Controls.Add(this.MainListView);
+            this.splitContainer1.Size = new System.Drawing.Size(1084, 624);
+            this.splitContainer1.SplitterDistance = 202;
+            this.splitContainer1.TabIndex = 2;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 673);
-            this.Controls.Add(this.pnlMain);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.MainToolStrip);
             this.Controls.Add(this.MainMenuStrip);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KeePass";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
             this.MainToolStrip.ResumeLayout(false);
             this.MainToolStrip.PerformLayout();
-            this.pnlMain.ResumeLayout(false);
             this.ListView_ctms.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,10 +348,8 @@
 
         private System.Windows.Forms.MenuStrip MainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStrip MainToolStrip;
-        private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.ListView MainListView;
         private System.Windows.Forms.ColumnHeader Title;
         private System.Windows.Forms.ColumnHeader Username;
@@ -336,9 +367,8 @@
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem copyPasswordToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gotoURLToolStripMenuItem;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ImageList trv_ImgL;
     }
 }
 
